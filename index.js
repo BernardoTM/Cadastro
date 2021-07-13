@@ -1,15 +1,11 @@
 const express = require('express');
 const server = express();
+const bodyParser = require('body-parser');
+server.use(bodyParser.urlencoded({extended : false }));
+server.use(express.json());
+const routes = require('./config/routes');
+server.use(routes);
 
-const mysql = require('mysql');
-
-server.get('/', (req, res) =>{
-    res.sendFile(__dirname +'/src/home.html');
-});
-server.get('/cadastro', (req, res) =>{
-    res.sendFile(__dirname +'/src/formulario.html');
-});
-
-server.listen(3001, () =>{
+server.listen(3000, () =>{
     console.log('Servidor de pé');
 });
